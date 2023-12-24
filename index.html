@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bubu</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f2f2f2;
+            text-align: center;
+        }
+
+        h1 {
+            color: #333;
+            margin-top: 50px;
+            font-size: 40px;
+        }
+
+        #q {
+            font-size: 30px;
+            position: absolute;
+            top: 130px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #333;
+        }
+
+        #pictureLabel {
+            position: relative; /* Updated */
+            top: 200px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 50%;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+        }
+
+        #b1, #b2 {
+            font-size: 20px;
+            padding: 10px 20px;
+            margin-top: 20px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            color: #fff;
+            transition: background-color 0.3s;
+        }
+
+        #b1 {
+            background-color: #4CAF50;
+        }
+
+        #b2 {
+            background-color: #ff4444;
+            position: absolute;
+            top: 300px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        #b1:hover, #b2:hover {
+            background-color: #333;
+        }
+    </style>
+</head>
+<body>
+    <h1>Bubu</h1>
+    <script>
+        function actionPerformed() {
+            var f = document.createElement("iframe");
+            f.src = "bubu_reply.html";
+            f.style.width = "400px";
+            f.style.height = "450px";
+            document.body.appendChild(f);
+        }
+
+        function mouseMoved(e) {
+            var x = e.clientX;
+            var y = e.clientY;
+            var cX = 330;
+            var cY = 530;
+
+            if ((cX + 100 + 2) >= x && (cX - 100 - 2) <= x) {
+                cX = Math.floor((Math.random() * x) / 10);
+            }
+            if ((cY + 50 + 2) >= y && (cY - 50 - 2) <= y) {
+                cY = Math.floor((Math.random() * y) / 10);
+            }
+
+            var b2 = document.getElementById("b2");
+            b2.style.top = cY + "px";
+            b2.style.left = cX + "px";
+        }
+
+        document.addEventListener("DOMContentLoaded", function() {
+            var q = document.createElement("label");
+            q.id = "q";
+            q.innerHTML = "DO YOU LIKE ME DUDU??";
+            document.body.appendChild(q);
+
+            var pictureLabel = document.createElement("img");
+            pictureLabel.id = "pictureLabel";
+            pictureLabel.src = "bubu.png";
+            document.body.appendChild(pictureLabel);
+
+            var b2 = document.createElement("button");
+            b2.id = "b2";
+            b2.innerHTML = "No";
+            document.body.appendChild(b2);
+
+            var b1 = document.createElement("button");
+            b1.id = "b1";
+            b1.innerHTML = "Yes, BUBU!";
+            b1.addEventListener("click", actionPerformed);
+            document.body.appendChild(b1);
+
+            document.addEventListener("mousemove", mouseMoved);
+        });
+    </script>
+</body>
+</html>
+
